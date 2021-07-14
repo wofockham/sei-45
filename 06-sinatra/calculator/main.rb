@@ -23,4 +23,6 @@ get '/result' do
   erb :result
 end
 
-# Sinatra doesn't know this ditty
+get '/faq' do
+  erb :faq
+end
