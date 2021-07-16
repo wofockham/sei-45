@@ -5,48 +5,49 @@ require 'pry'
 # A strict hash: you have to predefine the shape.
 # Also, unlike a Ruby hash: an object can have methods (functions inside the object)
 
+class Actor
+  def award_speech
+    "I would to thank my agent and my parents and my partner. We did it baby!"
+  end
+
+  def deny_allegations
+    "I deny that I don't remember and I was drunk and he's not my type."
+  end
+end
+
+class Stooge < Actor # inheritance
+  def terrible?
+    true
+  end
+end
+
 # name, instrument, vice
-class MarxBrother
+class MarxBrother < Actor
+  attr_accessor :name, :instrument, :vice
 
-  # setter
-  def name=(n)
+  def initialize(n='', i='', v='lampooning authority') # default parameters
     @name = n
-  end
-
-  # getter
-  def name()
-    @name # implicit return
-  end
-
-  # setter
-  def instrument=(i)
     @instrument = i
-  end
-
-  # getter
-  def instrument()
-    @instrument
-  end
-
-  # setter
-  def vice=(v)
     @vice = v
-  end
-
-  # getter
-  def vice()
-    @vice
   end
 
   # custom getter
   def perform
     "My name is #{ @name } and I play the #{ @instrument || "voice" }"
   end
-
 end
 
-binding.pry
+# groucho = MarxBrother.new
+# groucho.name = 'Groucho Julius Marx'
+# groucho.instrument = 'guitar'
+# groucho.vice = 'cigars'
+# puts groucho.name # Groucho Julius Marx
+#
+# chico = MarxBrother.new
+# chico.name = 'Chico Marx'
+# chico.instrument = 'piano'
+# chico.vice = 'infidelity'
+#
+harpo = MarxBrother.new 'Harpo', 'harp', 'mutism'
 
-groucho = MarxBrother.new
-groucho.name=('Groucho Julius Marx')
-puts groucho.name() # Groucho Julius Marx
+binding.pry
