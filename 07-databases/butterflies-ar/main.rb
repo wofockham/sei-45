@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'active_record'
 require 'sqlite3'
+require 'pry'
 
 # Rails will do this for you automatically:
 ActiveRecord::Base.establish_connection(
@@ -14,9 +15,16 @@ ActiveRecord::Base.logger = Logger.new(STDERR)
 
 # Class backed by a database table is called a Model
 class Butterfly < ActiveRecord::Base
+  belongs_to :plant, :optional => true
 end
 
 class Plant < ActiveRecord::Base
+  has_many :butterflies
+end
+
+# SECRET POWER USER ROUTE (DON'T TELL ANYONE ABOUT THIS)
+get '/pry' do
+  binding.pry
 end
 
 get '/' do
