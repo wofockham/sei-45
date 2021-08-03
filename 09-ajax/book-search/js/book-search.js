@@ -1,5 +1,8 @@
-const fetchCover = function () {
+const fetchCover = function (event) {
+  event.preventDefault(); // don't leave this page
+  console.log(event);
   const title = document.getElementById('title').value;
+  console.log('getting cover for', title);
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `https://www.googleapis.com/books/v1/volumes?q=title:${ title }`);
   xhr.send();
@@ -12,4 +15,4 @@ const fetchCover = function () {
   };
 };
 
-document.getElementById('search').addEventListener('click', fetchCover);
+document.querySelector('form').addEventListener('submit', fetchCover);
