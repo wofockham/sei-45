@@ -1,6 +1,7 @@
 const fetchFact = function () {
   $.ajax('http://numbersapi.com/random/trivia?json').done(function (info) {
-    $(`<p>${ info.text }</p>`).appendTo('body');
+    // $(`<p>${ info.text }</p>`).appendTo('body');
+    $('#fetch').after(`<p>${ info.text }</p>`);
   });
 };
 
