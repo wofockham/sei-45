@@ -13,4 +13,16 @@ class DashboardController < ApplicationController
     uptime = `uptime`
     render :plain => uptime
   end
+
+  def info
+    brother = %w( Groucho Harpo Chico ).sample
+    time = Time.now
+    uptime = `uptime`
+
+    render :json => {
+      :brother => brother,
+      :time => time,
+      :uptime => uptime
+    }
+  end
 end
