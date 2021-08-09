@@ -4,7 +4,7 @@ class Gallery extends Component {
   render() {
     return (
       <div>
-        gallery coming soon
+        { this.props.images.map((url) => <img src={url} />)}
       </div>
     )
   }
