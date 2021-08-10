@@ -25,14 +25,16 @@ class Secrets extends Component {
   }
 
   saveSecret(content) {
-    const secret = {id: Math.random(), content: content}; // TODO: send this to the server
-    this.setState({secrets: [...this.state.secrets, secret]}); // ... spread operator
+    axios.post(SERVER_URL, {content: content}).then((response) => {
+      // Add the new secret to the set of secrets (in state) without mutation.
+      this.setState({secrets: [...this.state.secrets, response.data]}); // spread operator
+    });
   }
 
   render() {
     return (
       <div>
-        <h1>Tell me all your secrets</h1>
+        <h1>Tell us all your secrets</h1>
         <SecretForm onSubmit={ this.saveSecret } />
         <SecretsList secrets={ this.state.secrets } />
       </div>
