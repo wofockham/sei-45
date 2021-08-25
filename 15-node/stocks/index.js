@@ -4,7 +4,7 @@ const stockfinder = require('stockfinder');
 
 const server = express();
 const PORT = 1337; // could be any number higher than 1024
-const APIKEY = 'dingoes';
+const APIKEY = 'pk_16a849fd637243a79fff90fa4d42bc5d';
 
 server.get('/', (req, res) => {
   res.render('home.ejs');
