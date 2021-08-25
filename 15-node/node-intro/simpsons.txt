@@ -1,0 +1,6 @@
+Homer
+Moe
+Nelson
+Bart
+Milhouse
+Superindent Chalmers
