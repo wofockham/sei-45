@@ -3,6 +3,7 @@ const ejs = require('ejs');
 const stockfinder = require('stockfinder');
 
 const server = express();
+server.use(express.static('public')); // put the public folder "online"
 const PORT = 1337; // could be any number higher than 1024
 const APIKEY = 'pk_16a849fd637243a79fff90fa4d42bc5d';
 
