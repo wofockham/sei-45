@@ -14,9 +14,15 @@
         <tr v-for="(word, i) in words" :key="i">
           <td>{{ word.english }}</td>
           <td>{{ word.german }}</td>
-          <td width="75" class="center aligned">Show</td>
-          <td width="75" class="center aligned">Edit</td>
-          <td width="75" class="center aligned">Destroy</td>
+          <td width="75" class="center aligned">
+            <router-link :to="{ name: 'show', params: { id: word._id } }">Show</router-link>
+          </td>
+          <td width="75" class="center aligned">
+            <router-link :to="{ name: 'edit', params: { id: word._id } }">Edit</router-link>
+          </td>
+          <td width="75" class="center aligned" @click.prevent="onDestroy(word._id)">
+            <a :href="`/words/${ word._id}`">Destroy</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -33,7 +39,18 @@ export default {
       words: []
     }
   },
-  async mounted() {
+  methods: {
+    async onDestroy(id) {
+      const sure = window.confirm('Are you sure?');
+      if (!sure) return;
+
+      await api.deleteWord(id);
+      alert('Word deleted successfully'); // todo: make this nicer
+      const updatedWords = this.words.filter((word) => word._id !== id);
+      this.words = updatedWords;
+    }
+  },
+  async mounted() { // Vue lifecycle methods
     this.words = await api.getWords();
   }
 }
