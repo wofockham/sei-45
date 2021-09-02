@@ -1,13 +1,19 @@
 class Node{
-    constructor(){
+    constructor(value=null){
         // a Node starts with a given data property
         // a Node also has a .next property initialized as null
+        this.value = value;
+        this.next = null;
     }
 }
 
 class LinkedList{
-    constructor(){
+    constructor(value=null){
         // a Linked List starts with a "head" property intialized as null
+        this.head = null;
+        if (value !== null) {
+          this.head = new Node(value);
+        }
     }
     appendNode(data){
         // creates a new node with the given data and adds it to back of the list
