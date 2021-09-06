@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Echo = () => {
   const [message, setMessage] = useState(''); // Initial state
-  const [name, setName] = useState('hessam');
+  const [name, setName] = useState('sorry');
 
   return (
     <div>
